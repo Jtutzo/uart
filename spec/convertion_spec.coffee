@@ -1,4 +1,4 @@
-convert = require "../lib/convert"
+convertion = require "../lib/convertion"
 
 describe "Teste la librairie de conversion du module uart\n", () ->
     
@@ -7,23 +7,32 @@ describe "Teste la librairie de conversion du module uart\n", () ->
     ###
     describe "Changement de d'encodage\n", () -> 
     
-        it "Encodage littleEndian 1\n", () -> 
-            expect(convert.isLittleEndian true).toBe true
+        it "isLittleEndian avec true comme paramètre\n", () -> 
+            expect(convertion.isLittleEndian true).toBe true
         
-        it "Encodage littleEndian 2\n", () -> 
-            expect(convert.isLittleEndian 1).toBe true
+        it "isLittleEndian avec 1 comme paramètre\n", () -> 
+            expect(convertion.isLittleEndian 1).toBe true
         
-        it "Encodage bigEndian 1\n", () -> 
-            expect(convert.isLittleEndian false).toBe false
+        it "isLittleEndian avec false comme paramètre\n", () -> 
+            expect(convertion.isLittleEndian false).toBe false
         
-        it "Encodage bigEndian 2\n", () -> 
-            expect(convert.isLittleEndian 0).toBe false
+        it "isLittleEndian avec 0 comme paramètre\n", () -> 
+            expect(convertion.isLittleEndian 0).toBe false
         
-        it "Encodage bigEndian 3\n", () -> 
-            expect(convert.isLittleEndian null).toBe false
+        it "isLittleEndian avec null comme paramètre\n", () -> 
+            expect(convertion.isLittleEndian null).toBe false
         
-        it "Encodage bigEndian 4\n", () -> 
-            expect(convert.isLittleEndian undefined).toBe false
+        it "isLittleEndian avec undefined comme paramètre\n", () -> 
+            expect(convertion.isLittleEndian undefined).toBe false
+        
+        it "isLittleEndian avec string comme paramètre\n", () -> 
+            expect(convertion.isLittleEndian "abc").toBe true
+        
+        it "isLittleEndian avec objet comme paramètre\n", () -> 
+            expect(convertion.isLittleEndian {}).toBe true
+        
+        it "isLittleEndian avec liste comme paramètre\n", () -> 
+            expect(convertion.isLittleEndian []).toBe true
     
     ###
     # Test de la méthode toBytes en littleEndian
@@ -31,44 +40,44 @@ describe "Teste la librairie de conversion du module uart\n", () ->
     describe "Conversion d'un nombre en bytes (littleEndian)\n", () -> 
         
         it "Convertion de 22 dans un tableau de 16 bytes\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toBytes 22, 16).toEqual [ 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian true
+            expect(convertion.toBytes 22, 16).toEqual [ 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
         
         it "Convertion de 22000 dans un tableau de 16 bytes\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toBytes 22000, 16).toEqual [ 240, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian true
+            expect(convertion.toBytes 22000, 16).toEqual [ 240, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
         
         it "Convertion de 22000 dans un tableau de 8 bytes\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toBytes 22000).toEqual [ 240, 85, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian true
+            expect(convertion.toBytes 22000).toEqual [ 240, 85, 0, 0, 0, 0, 0, 0 ]
         
         it "Convertion de 220000000000 dans un tableau de 3 bytes\n", () -> 
-            convert.isLittleEndian true
-            expect(() -> convert.toBytes 220000000000, 3).toThrow new Error "Illegal syze."
+            convertion.isLittleEndian true
+            expect(() -> convertion.toBytes 220000000000, 3).toThrow new Error "IndexOutOfRange"
         
         it "Convertion d'une valeur undefined\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toBytes undefined).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian true
+            expect(convertion.toBytes undefined).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
         
         it "Convertion d'une valeur null\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toBytes null).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian true
+            expect(convertion.toBytes null).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
         
         it "Convertion d'un boolean\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toBytes true).toEqual [ 1, 0, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian true
+            expect(convertion.toBytes true).toEqual [ 1, 0, 0, 0, 0, 0, 0, 0 ]
         
         it "Convertion d'un string\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toBytes "22000").toEqual [ 240, 85, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian true
+            expect(convertion.toBytes "22000").toEqual [ 240, 85, 0, 0, 0, 0, 0, 0 ]
         
         it "Convertion d'un objet vide\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toBytes {}).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian true
+            expect(convertion.toBytes {}).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
         
         it "Convertion d'un tableau vide\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toBytes []).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian true
+            expect(convertion.toBytes []).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
     
     ###
     # Test de la méthode toBytes en bigEndian
@@ -76,44 +85,44 @@ describe "Teste la librairie de conversion du module uart\n", () ->
     describe "Conversion d'un nombre en bytes (bigEndian)\n", () -> 
         
         it "Convertion de 22 dans un tableau de 16 bytes\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toBytes 22, 16).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22 ]
+            convertion.isLittleEndian false
+            expect(convertion.toBytes 22, 16).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22 ]
         
         it "Convertion de 22000 dans un tableau de 16 bytes\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toBytes 22000, 16).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 85, 240 ]
+            convertion.isLittleEndian false
+            expect(convertion.toBytes 22000, 16).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 85, 240 ]
         
         it "Convertion de 22000 dans un tableau de 8 bytes\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toBytes 22000).toEqual [ 0, 0, 0, 0, 0, 0, 85, 240 ]
+            convertion.isLittleEndian false
+            expect(convertion.toBytes 22000).toEqual [ 0, 0, 0, 0, 0, 0, 85, 240 ]
             
         it "Convertion de 220000000000 dans un tableau de 3 bytes\n", () -> 
-            convert.isLittleEndian false
-            expect(() -> convert.toBytes 220000000000, 3).toThrow new Error "Illegal syze."
+            convertion.isLittleEndian false
+            expect(() -> convertion.toBytes 220000000000, 3).toThrow new Error "IndexOutOfRange"
         
         it "Convertion d'une valeur undefined\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toBytes undefined).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian false
+            expect(convertion.toBytes undefined).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
         
         it "Convertion d'une valeur null\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toBytes null).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian false
+            expect(convertion.toBytes null).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
         
         it "Convertion d'un boolean\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toBytes true).toEqual [ 0, 0, 0, 0, 0, 0, 0, 1 ]
+            convertion.isLittleEndian false
+            expect(convertion.toBytes true).toEqual [ 0, 0, 0, 0, 0, 0, 0, 1 ]
         
         it "Convertion d'un string\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toBytes "22000").toEqual [ 0, 0, 0, 0, 0, 0, 85, 240 ]
+            convertion.isLittleEndian false
+            expect(convertion.toBytes "22000").toEqual [ 0, 0, 0, 0, 0, 0, 85, 240 ]
         
         it "Convertion d'un objet vide\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toBytes {}).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian false
+            expect(convertion.toBytes {}).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
         
         it "Convertion d'un tableau vide\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toBytes []).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+            convertion.isLittleEndian false
+            expect(convertion.toBytes []).toEqual [ 0, 0, 0, 0, 0, 0, 0, 0 ]
             
         
     ###
@@ -122,40 +131,40 @@ describe "Teste la librairie de conversion du module uart\n", () ->
     describe "Conversion d'un tableau de bytes en nombre (littleEndian)\n", () -> 
     
         it "Convertion de '[ 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] en nombre'\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toNumber [ 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]).toEqual 22
+            convertion.isLittleEndian true
+            expect(convertion.toNumber [ 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]).toEqual 22
         
         it "Convertion de [ '22', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0' ] en nombre'\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toNumber [ '22', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0' ]).toBeNaN()
+            convertion.isLittleEndian true
+            expect(convertion.toNumber [ '22', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0' ]).toBeNaN()
         
         it "Convertion d'une valeur undefined\n", () -> 
-            convert.isLittleEndian true
-            expect(() -> convert.toNumber undefined).toThrow()
+            convertion.isLittleEndian true
+            expect(() -> convertion.toNumber undefined).toThrow new Error 'UndefinedOrNullValue'
         
         it "Convertion d'une valeur null\n", () -> 
-            convert.isLittleEndian true
-            expect(() -> convert.toNumber null).toThrow()
+            convertion.isLittleEndian true
+            expect(() -> convertion.toNumber null).toThrow new Error 'UndefinedOrNullValue'
         
         it "Convertion d'un boolean\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toNumber true).toBeNaN()
+            convertion.isLittleEndian true
+            expect(convertion.toNumber true).toBeNaN()
         
         it "Convertion d'un string\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toNumber "22000").toBeNaN()
+            convertion.isLittleEndian true
+            expect(convertion.toNumber "22000").toBeNaN()
         
         it "Convertion d'un objet vide\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toNumber {}).toBeNaN()
+            convertion.isLittleEndian true
+            expect(convertion.toNumber {}).toBeNaN()
         
         it "Convertion d'un tableau vide\n", () -> 
-            convert.isLittleEndian true
-            expect(convert.toNumber []).toBeNaN()
+            convertion.isLittleEndian true
+            expect(convertion.toNumber []).toBeNaN()
         
         it "Convertion d'un tableau avec divers valeurs\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toNumber [{}, []]).toBeNaN()
+            convertion.isLittleEndian false
+            expect(convertion.toNumber [{}, []]).toBeNaN()
     
     ###
     # Test de la méthode toNumber bigEndian
@@ -163,37 +172,37 @@ describe "Teste la librairie de conversion du module uart\n", () ->
     describe "Conversion d'un tableau de bytes en nombre (bigEndian)\n", () -> 
     
         it "Convertion de [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22 ] en nombre'\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toNumber [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22 ]).toEqual 22
+            convertion.isLittleEndian false
+            expect(convertion.toNumber [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22 ]).toEqual 22
         
         it "Convertion de [ '22', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0' ] en nombre'\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toNumber [ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '22' ]).toBeNaN()
+            convertion.isLittleEndian false
+            expect(convertion.toNumber [ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '22' ]).toBeNaN()
         
         it "Convertion d'une valeur undefined\n", () -> 
-            convert.isLittleEndian false
-            expect(() -> convert.toNumber undefined).toThrow()
+            convertion.isLittleEndian false
+            expect(() -> convertion.toNumber undefined).toThrow new Error 'UndefinedOrNullValue'
         
         it "Convertion d'une valeur null\n", () -> 
-            convert.isLittleEndian false
-            expect(() -> convert.toNumber null).toThrow()
+            convertion.isLittleEndian false
+            expect(() -> convertion.toNumber null).toThrow new Error 'UndefinedOrNullValue'
         
         it "Convertion d'un boolean\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toNumber true).toBeNaN()
+            convertion.isLittleEndian false
+            expect(convertion.toNumber true).toBeNaN()
         
         it "Convertion d'un string\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toNumber "22000").toBeNaN()
+            convertion.isLittleEndian false
+            expect(convertion.toNumber "22000").toBeNaN()
         
         it "Convertion d'un objet vide\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toNumber {}).toBeNaN()
+            convertion.isLittleEndian false
+            expect(convertion.toNumber {}).toBeNaN()
         
         it "Convertion d'un tableau vide\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toNumber []).toBeNaN()
+            convertion.isLittleEndian false
+            expect(convertion.toNumber []).toBeNaN()
         
         it "Convertion d'un tableau avec divers valeurs\n", () -> 
-            convert.isLittleEndian false
-            expect(convert.toNumber [{}, []]).toBeNaN()
+            convertion.isLittleEndian false
+            expect(convertion.toNumber [{}, []]).toBeNaN()

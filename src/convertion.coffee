@@ -14,7 +14,7 @@ isLittleEndian = (value) -> littleEndian = if value then true else false
 # @param num
 # @param syze (array)
 # @return array
-# @exception Illegal syze
+# @exception IndexOutOfRange
 ###
 toBytes = (num, syze) -> if littleEndian then toBytesLittleEndian num, syze else toBytesBigEndian num, syze
 
@@ -22,6 +22,7 @@ toBytes = (num, syze) -> if littleEndian then toBytesLittleEndian num, syze else
 # Convert bytes array to number
 # @param bytes array
 # @return number
+# @exception UndefinedOrNullValue
 ###
 toNumber = (bytes) -> if littleEndian then toNumLittleEndian bytes else toNumBigEndian bytes
 
@@ -30,7 +31,7 @@ toNumber = (bytes) -> if littleEndian then toNumLittleEndian bytes else toNumBig
 # @param num
 # @param syze (array)
 # @return array
-# @exception Illegal syze
+# @exception IndexOutOfRange
 ###
 toBytesLittleEndian = (num, syze) -> 
     bytes = [];
@@ -38,7 +39,7 @@ toBytesLittleEndian = (num, syze) ->
     j = i-1;
     loop 
         bytes[j-(--i)] = num & 255;num = num>>8;if not i then break
-    if num isnt 0 then throw new Error "Illegal syze."
+    if num isnt 0 then throw new Error "IndexOutOfRange"
     bytes
 
 ###
@@ -46,14 +47,14 @@ toBytesLittleEndian = (num, syze) ->
 # @param num
 # @param syze (array)
 # @return array
-# @exception Illegal syze
+# @exception IndexOutOfRange
 ###
 toBytesBigEndian = (num, syze) -> 
     bytes = [];
     i = if syze and typeof syze is 'number' then syze else 8
     loop 
         bytes[--i] = num & 255;num = num>>8;if not i then break
-    if num isnt 0 then throw new Error "Illegal syze."
+    if num isnt 0 then throw new Error "IndexOutOfRange"
     bytes
 
 
@@ -61,7 +62,7 @@ toBytesBigEndian = (num, syze) ->
 # Convert bytes array to number (decoding to littleEndian)
 # @param bytes array
 # @return number
-# @exception undefined exception, null exception
+# @exception UndefinedOrNullValue
 ###
 toNumLittleEndian = (bytes) -> 
     val = 0
@@ -78,6 +79,7 @@ toNumLittleEndian = (bytes) ->
 # Convert bytes array to number (decoding to bigEndian)
 # @param bytes array
 # @return number
+# @exception UndefinedOrNullValue
 ###
 toNumBigEndian = (bytes) -> 
     val = 0

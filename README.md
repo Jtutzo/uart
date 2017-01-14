@@ -6,15 +6,16 @@ Auteur : Jtutzo, dernière version : 0.0.1, statut : en dev
 Il est composé de sous-modules qui sont les suivants :
  - [convert](#convert)
  
-compilation : `npm run compile`
-tests : `npm test`
+Compilation du module : `npm run compile`<br />
+Compilation des tests : `npm run compile-test`<br />
+Mise en route des tests : `npm test`
 
 ## convert <a id="convert"></a>##
 > Permet la convertion de nombre en tableau de bytes dimmensionnés et de tableau de bytes en nombre.
 
 ### Utilisations ###
 
-`var convert = require('uart').convert();`
+`var convert = require('uart').convertion();`
 
 ### Méthodes ###
 - [isLittleEndian](#isLittleEndian)
@@ -36,7 +37,7 @@ Change l'encodage/décodage des données (`littleEndian` ou `bigEndian`)
 
 Convertis un nombre en tableau de bytes dimmensionnés<br />
 *Retour* : `array` de `byte`<br />
-*Exception* : `Illegal syze`
+*Exception* : `IndexOutOfRange`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
@@ -47,7 +48,7 @@ Convertis un nombre en tableau de bytes dimmensionnés<br />
 
 Convertis un tableau de `bytes` en `number`<br />
 *Retour* : `number`
-*Exception* : `undefined exception`, `null exception`
+*Exception* : `UndefinedOrNullValue`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
