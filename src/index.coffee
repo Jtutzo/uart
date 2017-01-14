@@ -1,3 +1,3 @@
-convert = require './convert'
+convertion = require './convertion'
 
-module.exports.convert = () -> convert
+module.exports.convertion = () -> convertion

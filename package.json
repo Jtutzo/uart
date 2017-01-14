@@ -1,7 +1,7 @@
 
 {
   "name": "uart",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Module uart for nodejs",
   "main": "./lib/index.js",
   "scripts": {
