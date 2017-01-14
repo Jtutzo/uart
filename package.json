@@ -6,8 +6,8 @@
   "main": "./lib/index.js",
   "scripts": {
     "compile": "coffee -co lib src",
-    "compileTest": "coffee -co ./spec ./spec",
-    "test": "jasmine-node spec"
+    "compile-test": "coffee -co ./spec ./spec & ",
+    "test": "coffee -co ./spec ./spec & jasmine-node spec"
   },
   "keywords": [
     "uart",

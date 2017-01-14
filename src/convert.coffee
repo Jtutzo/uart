@@ -23,7 +23,7 @@ toBytes = (num, syze) -> if littleEndian then toBytesLittleEndian num, syze else
 # @param bytes array
 # @return number
 ###
-toNum = (bytes) -> if littleEndian then toNumLittleEndian bytes else toNumBigEndian bytes
+toNumber = (bytes) -> if littleEndian then toNumLittleEndian bytes else toNumBigEndian bytes
 
 ###
 # Convert number to bytes array (encoding to littleEndian)
@@ -61,13 +61,18 @@ toBytesBigEndian = (num, syze) ->
 # Convert bytes array to number (decoding to littleEndian)
 # @param bytes array
 # @return number
+# @exception undefined exception, null exception
 ###
 toNumLittleEndian = (bytes) -> 
     val = 0
-    i = bytes.length-1
+    if typeof bytes is 'undefined' or bytes is null then throw new Error "UndefinedOrNullValue"
+    i = bytes.length-1;if not(Array.isArray bytes) or i < 0 then return NaN
     loop
-        --i;if i > 0 then val = val << 8;if i >= 0 then break
-    val
+        val += bytes[i]
+        if i > 0 then val = val << 8
+        if i is 0 then break
+        --i
+    if val and typeof JSON.parse(JSON.stringify val) is 'number' then val else NaN
 
 ###
 # Convert bytes array to number (decoding to bigEndian)
@@ -76,10 +81,13 @@ toNumLittleEndian = (bytes) ->
 ###
 toNumBigEndian = (bytes) -> 
     val = 0
+    if typeof bytes is 'undefined' or bytes is null then throw new Error "UndefinedOrNullValue"
+    if not(Array.isArray bytes) or bytes.length is 0 then return NaN
     for byte, i in bytes
+        val += byte
         if i > bytes.length-1 then val = val << 8
-    val
+    if val and typeof JSON.parse(JSON.stringify val) is 'number' then val else NaN
         
 module.exports.isLittleEndian = isLittleEndian
 module.exports.toBytes = toBytes
-module.exports.toNum = toNum
+module.exports.toNumber = toNumber

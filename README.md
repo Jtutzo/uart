@@ -6,6 +6,9 @@ Auteur : Jtutzo, dernière version : 0.0.1, statut : en dev
 Il est composé de sous-modules qui sont les suivants :
  - [convert](#convert)
  
+compilation : `npm run compile`
+tests : `npm test`
+
 ## convert <a id="convert"></a>##
 > Permet la convertion de nombre en tableau de bytes dimmensionnés et de tableau de bytes en nombre.
 
@@ -16,7 +19,7 @@ Il est composé de sous-modules qui sont les suivants :
 ### Méthodes ###
 - [isLittleEndian](#isLittleEndian)
 - [toBytes](#toBytes)
-- [toNum](#toNum)
+- [toNumber](#toNumber)
 
 ### Détails ###
 
@@ -40,10 +43,11 @@ Convertis un nombre en tableau de bytes dimmensionnés<br />
 |num            |number               |Nombre à convertir|
 |syze           |number               |Taille du tableau de bytes|
 
-**`toNum`<a id="toNum"></a>**
+**`toNumber`<a id="toNumber"></a>**
 
 Convertis un tableau de `bytes` en `number`<br />
 *Retour* : `number`
+*Exception* : `undefined exception`, `null exception`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
