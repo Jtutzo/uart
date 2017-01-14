@@ -6,7 +6,8 @@
   "main": "./lib/index.js",
   "scripts": {
     "compile": "coffee -co lib src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compileTest": "coffee -co ./spec ./spec",
+    "test": "jasmine-node spec"
   },
   "keywords": [
     "uart",

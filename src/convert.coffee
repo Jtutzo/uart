@@ -4,6 +4,12 @@
 littleEndian = true
 
 ###
+# Update encoding/decoding convertion
+# @param value
+###
+isLittleEndian = (value) -> littleEndian = if value then true else false
+
+###
 # Convert number to bytes array
 # @param num
 # @param syze (array)
@@ -31,7 +37,7 @@ toBytesLittleEndian = (num, syze) ->
     i = if syze and typeof syze is 'number' then syze else 8
     j = i-1;
     loop 
-        bytes[j-(--i)] = num & 255;num = num>>8;if i then break
+        bytes[j-(--i)] = num & 255;num = num>>8;if not i then break
     if num isnt 0 then throw new Error "Illegal syze."
     bytes
 
@@ -46,7 +52,7 @@ toBytesBigEndian = (num, syze) ->
     bytes = [];
     i = if syze and typeof syze is 'number' then syze else 8
     loop 
-        bytes[--i] = num & 255;num = num>>8;if i then break
+        bytes[--i] = num & 255;num = num>>8;if not i then break
     if num isnt 0 then throw new Error "Illegal syze."
     bytes
 
@@ -74,6 +80,6 @@ toNumBigEndian = (bytes) ->
         if i > bytes.length-1 then val = val << 8
     val
         
-module.exports.littleEndian = littleEndian
+module.exports.isLittleEndian = isLittleEndian
 module.exports.toBytes = toBytes
 module.exports.toNum = toNum

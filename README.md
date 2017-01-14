@@ -13,18 +13,21 @@ Il est composé de sous-modules qui sont les suivants :
 
 `var convert = require('uart').convert();`
 
-### Variables statiques ###
-- [littleEndian](#littleEndian)
-
 ### Méthodes ###
+- [isLittleEndian](#isLittleEndian)
 - [toBytes](#toBytes)
 - [toNum](#toNum)
 
 ### Détails ###
 
-**`littleEndian`<a id="littleEndian"></a>**
+**`isLittleEndian`<a id="isLittleEndian"></a>**
 
-Variable statique afin de paramétrer l'encodage/décodage des données (`littleEndian` ou `bigEndian`)
+Change l'encodage/décodage des données (`littleEndian` ou `bigEndian`)
+*Retour* : `boolean`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |boolean              |Encodage en littleEndian|
 
 **`toBytes`<a id="toBytes"></a>**
 
