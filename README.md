@@ -29,8 +29,8 @@ Variable statique afin de paramétrer l'encodage/décodage des données (`little
 **`toBytes`<a id="toBytes"></a>**
 
 Convertis un nombre en tableau de bytes dimmensionnés<br />
-***Retour*** : `array` de `byte`<br />
-***Exception*** : ̀`Illegal syze`
+*Retour* : `array` de `byte`<br />
+*Exception* : `Illegal syze`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
@@ -40,7 +40,7 @@ Convertis un nombre en tableau de bytes dimmensionnés<br />
 **`toNum`<a id="toNum"></a>**
 
 Convertis un tableau de `bytes` en `number`<br />
-***Retour*** : `number`
+*Retour* : `number`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
