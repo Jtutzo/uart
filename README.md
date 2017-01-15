@@ -3,7 +3,7 @@
 Auteur : Jtutzo, dernière version : 1.1.0, statut : stable
 
 > C'est un module qui permet la gestion de l'uart pour l'environement nodeJS.<br />
-Il est composé d'un sous-modules qui est le suivants :
+Il est composé d'un sous-module qui est le suivant :
  - [convertion](#moduleConvertion)
  
 Compilation du module : `npm run compile`<br />
@@ -43,7 +43,7 @@ Change le protocol<br />
 | ------------- |-------------        | ---------  |
 |customProtocol |object               |Le protocol à utiliser|
 |customProtocol.toSend |function(value) |retourne la valeur (ou trame) en liste de byte|
-|customProtocol.toResponse |function(bytes) |retourne la liste de byte en une valeur (ou trame|
+|customProtocol.toResponse |function(bytes) |retourne la liste de byte en une valeur (ou trame)|
 
 **`list`<a id="list"></a>**
 
@@ -69,7 +69,7 @@ Ouvre et initialise un port
 
 **`update`<a id="update"></a>**
 
-Change les options du port ouvert
+Change les options du port ouvert<br />
 *Exception* : `PortNotOpen`
 
 | Argument      |Type                 |Description |
@@ -79,7 +79,7 @@ Change les options du port ouvert
 
 **`send`<a id="send"></a>**
 
-Envoie une valeur sur le port
+Envoie une valeur sur le port<br />
 *Exception* : `PortNotOpen`
 
 | Argument      |Type                 |Description |
@@ -89,12 +89,12 @@ Envoie une valeur sur le port
 
 **`close`<a id="close"></a>**
 
-Ferme le port
+Ferme le port<br />
 *Exception* : `PortNotOpen`
 
 **`onData`<a id="onData"></a>**
 
-Attache un listenner à l'évènement 'data'
+Attache un listenner à l'évènement `data`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
@@ -102,7 +102,7 @@ Attache un listenner à l'évènement 'data'
 
 **`onError`<a id="onError"></a>**
 
-Attache un listenner à l'évènement 'error'
+Attache un listenner à l'évènement `error`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
@@ -110,7 +110,7 @@ Attache un listenner à l'évènement 'error'
 
 **`onClose`<a id="onClose"></a>**
 
-Attache un listenner à l'évènement 'close'
+Attache un listenner à l'évènement `close`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
